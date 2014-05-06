@@ -17,7 +17,7 @@ end
 
 def max_2_sum(array)
   return 0 if array.empty?
-  return array if array.length==1
+  return array.at(0) if array.length==1
   array.sort!{|x,y| y<=>x}
   return array.at(0)+array.at(1)
 end
@@ -39,7 +39,7 @@ puts sum []
 puts sum [1,3,6,10,15,21]
 
 puts max_2_sum []
-puts max_2_sum [5]
+puts (max_2_sum [5])==5
 puts max_2_sum [1,2,3,5,8,11]
 
 puts sum_to_n?([],15)
