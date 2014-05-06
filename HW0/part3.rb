@@ -21,7 +21,7 @@ class BookInStock
     @price=price
   end
   def price_as_string
-    e,s=price.to_s.split('.')
+    e,s=price.to_f.to_s.split('.')
     "$#{e}.#{s.ljust(2,'0')}"
   end
 end
@@ -30,7 +30,7 @@ end
 odisea=BookInStock.new("960-425-059-0",15.2)
 puts odisea.price_as_string
 puts odisea.price,odisea.isbn
-odisea.price=20.4
+odisea.price=20
 odisea.isbn="960-425-056-0"
 puts odisea.price,odisea.isbn
 puts odisea.price_as_string
