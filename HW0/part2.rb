@@ -14,7 +14,7 @@ end
 
 def starts_with_consonant?(s)
   s.downcase!
-  return (/\A[aeiou]/=~ s)? true:false
+  return (/\A[aeiou]/=~ s)? false:true
 end
 
 def binary_multiple_of_4?(s) 
