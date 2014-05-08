@@ -13,8 +13,10 @@ def hello(name)
 end
 
 def starts_with_consonant?(s)
-  s.downcase!
-  return (/\A[aeiou]/=~ s)? false:true
+  return false if s.empty?
+  return false unless (/\A[a-z]/i=~ s)
+  #s.downcase!
+  return (/\A[aeiou]/i=~ s)? false:true
 end
 
 def binary_multiple_of_4?(s) 
@@ -24,6 +26,9 @@ end
 puts hello("Govs")
 puts starts_with_consonant?("Arturo")
 puts starts_with_consonant?("Govea")
+puts starts_with_consonant?("")
+puts starts_with_consonant?("1ovea")
+puts starts_with_consonant?("#ovea")
 puts binary_multiple_of_4?("52613")
 puts binary_multiple_of_4?("advklk6132")
 puts binary_multiple_of_4?("1010101010")
