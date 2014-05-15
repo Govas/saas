@@ -22,6 +22,7 @@ module FunWithStrings
         words.each do |x|
             ary=Array.new
             ax=x.downcase.split('').sort
+            next if anagrams.include_element?(x)
             words.each do |y|
               ay=y.downcase.split('').sort
               if ax==ay
