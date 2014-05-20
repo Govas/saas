@@ -20,7 +20,27 @@ class RockPaperScissors
   end
 
   def self.tournament_winner(tournament)
-    # YOUR CODE HERE
+=begin
+    branch=tournament
+    while branch.class==Array
+      puts branch.length
+      branch=branch.at(0)
+    end
+=end
+    if tournament.at(0).at(0).class==String
+      return self.winner(tournament.at(0),tournament.at(1))
+    else
+      aux=Array.new
+      tournament.each do |x|
+          aux<< self.tournament_winner(x)
+      end  
+      if aux.at(0).class==String
+        return aux
+      else
+        self.tournament_winner(aux)
+      end
+    end
+    
   end
 
 end
