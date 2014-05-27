@@ -8,18 +8,26 @@ class MoviesController < ApplicationController
 
   def index
     @all_ratings=Movie.uniq.pluck(:rating)#['G','PG','PG-13','R']
-    @rate=@all_ratings if @rate==nil
-       sortie=params[:sort]
+    if @rate==nil
+      if session[:rating]==nil
+      @rate=@all_ratings 
+      else
+      @rate=session[:rating]  
+      end
+    end
+       sortie=params[:sort]||session[:sort]
        if sortie==nil
          @movies = Movie.all
        else
-         @movies = Movie.find(:all,:order => sortie)
+         @movies = Movie.find_all_by_rating(@rate,:order => sortie)
        end  
        rf=params[:commit]
        @rate=params[:ratings].keys unless params[:ratings]==nil #['G','PG']
        if rf=="Refresh"
-         @movies = Movie.find(:all,:conditions => ["rating IN (?)",@rate])
+         @movies = Movie.find(:all,:conditions => ["rating IN (?)",@rate])  
        end
+       session[:sort]=sortie
+       session[:rating]=@rate
   end
 
   def new
